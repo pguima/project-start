@@ -10,4 +10,46 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-[x-cloak] { display: none !important; }
+[x-cloak] {
+    display: none !important;
+}
+
+nav {
+    background-color: #111827;
+    color: white;
+}
+
+aside {
+    background-color: #1f2937;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+main {
+    transition: all 0.3s ease-in-out;
+}
+
+.card {
+    @apply bg-white rounded-xl p-6 mb-6 border border-gray-100;
+}
+
+.table-auto th,
+.table-auto td {
+    @apply border border-x-transparent border-y-gray-100 px-4 py-4 text-left;
+}
+
+.table-auto th {
+    @apply border border-t-transparent font-semibold text-gray-500;
+}
+
+.table-auto tr:hover {
+    @apply bg-blue-50;
+}
+
+.input-search {
+    @apply border border-gray-300 rounded px-3 py-2 w-full max-w-sm focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+input[type="text"].input-search::placeholder {
+    @apply text-gray-400;
+}

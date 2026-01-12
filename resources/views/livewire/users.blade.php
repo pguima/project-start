@@ -1,55 +1,52 @@
 <div>
     <div class="p-6" x-data="{ open: @entangle('showForm') }">
         <div class="flex justify-between mb-4">
-            <input type="text" wire:model.blur="search" class="border rounded px-3 py-2"
+            <input type="text" wire:model.blur="search" class="border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Pesquisar usuário...">
 
 
-            <button @click="open = true" wire:click="create" class="bg-blue-600 text-white px-4 py-2 rounded">
-                Novo Usuário
-            </button>
+            <div>
+                <button wire:click="exportCsv" class="border rounded px-4 py-2">
+                    Exportar CSV
+                </button>
+                <button wire:click="exportPdf" class="border rounded px-4 py-2">
+                    Exportar PDF
+                </button>
+                <button @click="open = true" wire:click="create" class="bg-blue-600 text-white px-4 py-2 rounded">
+                    Novo Usuário
+                </button>
+            </div>
         </div>
 
-        <div class="flex gap-2">
-            <button wire:click="exportCsv" class="bg-gray-700 text-white px-4 py-2 rounded">
-                Exportar CSV
-            </button>
-
-
-            <button wire:click="exportPdf" class="bg-red-600 text-white px-4 py-2 rounded">
-                Exportar PDF
-            </button>
-        </div>
-
-        <table class="w-full border">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="p-2">Nome</th>
-                    <th class="p-2">Email</th>
-                    <th class="p-2">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr class="border-t">
-                        <td class="p-2">{{ $user->name }}</td>
-                        <td class="p-2">{{ $user->email }}</td>
-                        <td class="p-2 flex gap-2">
-                            <button wire:click="edit({{ $user->id }})" class="text-blue-600">Editar</button>
-
-
-                            <button wire:click="confirmDelete({{ $user->id }})" class="text-red-600">
-                                Excluir
-                            </button>
-                        </td>
+        <div class="card">
+            <table class="table-auto w-full mt-4 border-collapse border">
+                <thead>
+                    <tr>
+                        <th class="p-2">Nome</th>
+                        <th class="p-2">Email</th>
+                        <th class="p-2">Ações</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr class="border-t">
+                            <td class="p-2">{{ $user->name }}</td>
+                            <td class="p-2">{{ $user->email }}</td>
+                            <td class="p-2 gap-2">
+                                <button wire:click="edit({{ $user->id }})" class="text-blue-600 hover:text-blue-800">Editar</button>
 
 
-        {{ $users->links() }}
+                                <button wire:click="confirmDelete({{ $user->id }})" class="text-red-600 hover:text-red-800">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $users->links() }}
 
+        </div>
 
         <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -61,9 +58,9 @@
                 x-transition:leave-end="translate-x-full" class="bg-white w-96 p-6 h-full shadow-xl">
                 <h2 class="text-xl font-bold mb-4">Usuário</h2>
 
-                <input wire:model.defer="name" class="border w-full mb-2 p-2" placeholder="Nome">
-                <input wire:model.defer="email" class="border w-full mb-2 p-2" placeholder="Email">
-                <input wire:model.defer="password" type="password" class="border w-full mb-4 p-2" placeholder="Senha">
+                <input wire:model.defer="name" class="border border-gray-300 rounded-md w-full mb-2 p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Nome">
+                <input wire:model.defer="email" class="border border-gray-300 rounded-md w-full mb-2 p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Email">
+                <input wire:model.defer="password" type="password" class="border border-gray-300 rounded-md w-full mb-4 p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Senha">
 
                 <div class="flex justify-end gap-2">
                     <button @click="open = false" class="px-4 py-2 border rounded">
