@@ -13,7 +13,7 @@
     @livewireStyles
 </head>
 
-<body class="h-full bg-gray-50">
+<body class="h-full">
 
     <div x-data="{
         // Estado principal
@@ -41,7 +41,7 @@
             this.activeSection = section;
         },
     }" class="h-full">
-        <nav class="bg-white px-4 py-3 shadow-sm">
+        <nav class="nav-top  px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex space-x-4 ml-4">
                     <button @click="toggleSidebar()" class="p-2 rounded-lg hover:bg-gray-100">
@@ -63,7 +63,7 @@
                         <p class="text-xs text-gray-500">Administrador</p>
                     </div>
                     <div
-                        class="w-9 h-9 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-semibold">
+                        class="w-9 h-9 btn-avatar rounded-full flex items-center justify-center">
                         JS
                     </div>
                 </div>
